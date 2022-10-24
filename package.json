@@ -8,8 +8,8 @@
     "lint": "tsc",
     "test:lesson-1": "npm-run-all clean lint mocha:lesson-1",
     "test:all": "npm-run-all clean lint mocha:all",
-    "mocha:lesson-1": "mocha -t 10000 dist/lesson-1.js",
-    "mocha:all": "mocha -t 10000 dist/*.js"
+    "mocha:lesson-1": "mocha -t 15000 dist/lesson-1.js",
+    "mocha:all": "mocha -t 15000 dist/*.js"
   },
   "keywords": [],
   "author": "",

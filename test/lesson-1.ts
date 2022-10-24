@@ -1,7 +1,7 @@
 import 'chromedriver';
 
 import { assert } from 'chai';
-import { Capabilities, WebElement, WebElementPromise } from 'selenium-webdriver';
+import { Capabilities, until, WebElement, WebElementPromise } from 'selenium-webdriver';
 
 import { Browser } from './helpers/browser';
 
@@ -23,29 +23,27 @@ describe('Lesson 1: Automation Introduction and Basic Scripting', () => {
     browser.maximize();
 
     browser.navigate('https://practicetestautomation.com/practice-test-login/');
+    await browser.getDriver().wait(until.titleContains('Test Login'), 10000, 'Timeout waiting for LOGIN message');
 
     const username: WebElement = await browser.findElementById('username');
-    console.log({username});
     username.sendKeys('student');
 
     const password: WebElement = await browser.findElementById('password');
-    console.log({password});
     password.sendKeys('Password123');
 
     const submit: WebElement = await browser.findElementById('submit');
-    console.log({submit});
     submit.click();
 
-    browser.getDriver().wait(() => browser.findElement('#loop-container article .post-header h1'), 5000, 'Timeout waiting for OK message');
+    // await browser.getDriver().wait(until.elementIsVisible(await browser.findElement('#loop-container article .post-header h1')), 5000, 'Timeout waiting for OK message');
+    await browser.getDriver().wait(until.titleContains('Logged In Successfully'), 10000, 'Timeout waiting for OK message');
 
     const okMessage: WebElement = await browser.findElement('#loop-container article .post-header h1');
     assert.ok(okMessage.isDisplayed(), 'OK message not found');
 
     const okText: string = await okMessage.getText();
-    console.log({okMessage, okText});
-    assert.equal(okText, '', 'Unexpected OK message');
+    assert.equal(okText, 'Logged In Successfully', 'Unexpected OK message');
 
-    // await browser.getDriver().sleep(2000);
+    await browser.getDriver().sleep(2000);
   });
 
   after(() => {
