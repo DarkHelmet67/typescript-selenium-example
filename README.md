@@ -1,28 +1,28 @@
 # TypeScript + Selenium example
 
-This is a working example of using `Selenium`, `TypeScript` and [Page Object Pattern](https://martinfowler.com/bliki/PageObject.html).
-These are real test cases that run against a [Fider](http://getfider.com) instance.
-Check out a running example of the application at [http://demo.fider.io](http://demo.fider.io).
+Forked from https://github.com/goenning/typescript-selenium-example
+
+
+This is a working example of using `Selenium`, `TypeScript` and [Page Object Pattern](https://martinfowler.com/bliki/PageObject.html) using excercises as tests
+
+This repo should work on both Linux and Windows machines (using `rimraf` and `npm-run-all`)
 
 # How it is structured
 
 ```
 .
-├── lib/
-├── pages/
-├── specs/
-├── tests/
-└── config.ts
+├── assets/     -> Linux/Win Chromedrivers
+├── test/       -> Tests/Lessons
+│   ├── helpers -> Browser Model
+│   └── pages   -> Page Object Model
 ```
 
-- `lib`: Think of this as a "framework". Ideally should be a separate module distributed on `npm`
-- `pages`: These are your `Page Object` models. Each Page of your application should have a PageObject that maps all the elements and actions
-- `specs`: All your BDD-style tests goes here
-- `tests`: All your TDD-style/classic tests goes here
-- `config.ts`: General configuration and settings that are read by tests
-
-## Test Case #1: Unauthenticated cannot submit ideas
+# Setup
+* Check the version of Chrome currently installed on the machine you want to use for the tests
+* Download the correct Chromedriver from https://chromedriver.chromium.org/downloads to drive it
+* Save it to folder assets/chromedriver/`release`/`os`, e.g. `assets/chromedriver/106.0.5249.61/linux64`
+* Upxdate the path inside `.npmrc` file, e.g. `chromedriver_filepath=/assets/chromedriver/106.0.5249.61/win32/chromedriver_win32.zip`
 
 
-# See the tests
-
+# How to run the tests
+There is a test for each lesson, e.g. `npm run test:lesson-1`
