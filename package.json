@@ -10,10 +10,10 @@
     "test:lesson-2": "npm-run-all clean compile mocha:lesson-2",
     "test:lesson-3": "npm-run-all clean compile mocha:lesson-3",
     "test:all": "npm-run-all clean compile mocha:all",
-    "mocha:lesson-1": "mocha -t 15000 --bail dist/lesson-1.js",
-    "mocha:lesson-2": "mocha -t 15000 --bail dist/lesson-2.js",
-    "mocha:lesson-3": "mocha -t 15000 --bail dist/lesson-3.js",
-    "mocha:all": "mocha -t 15000 --bail dist/*.js"
+    "mocha:lesson-1": "mocha --bail dist/lesson-1.js",
+    "mocha:lesson-2": "mocha --bail dist/lesson-2.js",
+    "mocha:lesson-3": "mocha --bail dist/lesson-3.js",
+    "mocha:all": "mocha --bail dist/*.js"
   },
   "keywords": [],
   "author": "",

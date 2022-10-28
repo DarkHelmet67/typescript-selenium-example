@@ -8,15 +8,10 @@ export const selectorPassword: string = 'password';
 export const selectorSiteTitle: string = 'site-title';
 export const selectorSubmit: string = 'submit';
 export const selectorUsername: string = 'username';
-export const textInvalidPassword: string = 'Your password is invalid!';
-export const textInvalidUsername: string = 'Your username is invalid!';
 export const textLogin: string = 'Test Login';
 export const textLoginOk: string = 'Logged In Successfully';
-export const textPassword: string = 'Password123';
-export const textUsername: string = 'student';
 export const timeout: number = 10000;
 export const urlLogin: string = 'https://practicetestautomation.com/practice-test-login/';
-export const urlLoginOk: string = 'https://practicetestautomation.com/logged-in-successfully/';
 
 export const gotoLoginPage = async(browser: Browser): Promise<void> => {
   browser.navigate(urlLogin);

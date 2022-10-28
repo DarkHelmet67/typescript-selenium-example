@@ -12,12 +12,7 @@ import {
   getElementLoginConfirmation,
   getElementSiteTitle,
   gotoLoginPage,
-  textInvalidPassword,
-  textInvalidUsername,
   textLoginOk,
-  textPassword,
-  textUsername,
-  urlLoginOk,
 } from './pages/loginPage';
 
 const capabilities: {} | Capabilities = {
@@ -27,7 +22,14 @@ const capabilities: {} | Capabilities = {
   }
 };
 
+const textInvalidPassword: string = 'Your password is invalid!';
+const textInvalidUsername: string = 'Your username is invalid!';
+const textPassword: string = 'Password123';
+const textUsername: string = 'student';
+const urlLoginOk: string = 'https://practicetestautomation.com/logged-in-successfully/';
+
 describe('Lesson 2: Environment Variables and Parallel Testing', () => {
+  // Written using PAGE OBJECT MODEL
   let browser: Browser;
 
   beforeEach(() => {
@@ -47,7 +49,7 @@ describe('Lesson 2: Environment Variables and Parallel Testing', () => {
 
     const errorText: string = await errorMessage.getText();
     assert.equal(errorText, textInvalidUsername, 'Unexpected error message');
-  });
+  }).timeout(10000);
 
   it('Wrong Password', async () => {
     browser.maximize();
@@ -62,7 +64,7 @@ describe('Lesson 2: Environment Variables and Parallel Testing', () => {
 
     const errorText: string = await errorMessage.getText();
     assert.equal(errorText, textInvalidPassword, 'Unexpected error message');
-  });
+  }).timeout(10000);
 
   it('Successfully logged in', async () => {
     browser.maximize();
@@ -84,7 +86,7 @@ describe('Lesson 2: Environment Variables and Parallel Testing', () => {
     assert.equal(urlCurrent, urlLoginOk, 'Unexpected url');
 
     await browser.getDriver().sleep(1000); // Uncomment if you want to see actual browser screen before test finish
-  });
+  }).timeout(15000);
 
   afterEach(() => {
     browser.close();

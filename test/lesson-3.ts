@@ -5,7 +5,8 @@ import { afterEach, beforeEach } from 'mocha';
 import { Capabilities, WebElement } from 'selenium-webdriver';
 
 import { Browser } from './helpers/browser';
-import { fillContactForm, getElementConfirmMessage, gotoContactUsPage, gotoHomePage } from './pages/homePage';
+import { gotoContactUsPage, gotoHomePage } from './pages/homePage';
+import { fillContactForm, getElementConfirmMessage } from './pages/contactPage';
 
 const capabilities: {} | Capabilities = {
   'browserName' : 'chrome',
@@ -43,7 +44,7 @@ describe('Lesson 3: Best Practices and Page Object Model', () => {
     assert.equal(confirmText, successText, 'Unexpected confirm message');
     
     await browser.getDriver().sleep(2000); // Uncomment if you want to see actual browser screen before test finish
-  });
+  }).timeout(20000);
 
   afterEach(() => {
     browser.close();
