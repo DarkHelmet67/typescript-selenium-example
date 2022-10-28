@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "lint": "tsc",
-    "test:lesson-1": "npm-run-all clean lint mocha:lesson-1",
-    "test:all": "npm-run-all clean lint mocha:all",
-    "mocha:lesson-1": "mocha -t 15000 dist/lesson-1.js",
-    "mocha:all": "mocha -t 15000 dist/*.js"
+    "compile": "tsc",
+    "test:lesson-1": "npm-run-all clean compile mocha:lesson-1",
+    "test:lesson-2": "npm-run-all clean compile mocha:lesson-2",
+    "test:all": "npm-run-all clean compile mocha:all",
+    "mocha:lesson-1": "mocha -t 15000 --bail dist/lesson-1.js",
+    "mocha:lesson-2": "mocha -t 15000 --bail dist/lesson-2.js",
+    "mocha:all": "mocha -t 15000 --bail dist/*.js"
   },
   "keywords": [],
   "author": "",

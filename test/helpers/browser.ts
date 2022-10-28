@@ -27,9 +27,13 @@ export class Browser {
     return this.webDriver.findElement(By.id(id));
   }
 
+  public async getCurrentUrl(): Promise<string> {
+    return await this.webDriver.getCurrentUrl();
+  }
+
   public async clearCookies(url?: string): Promise<void> {
     if (url) {
-      const currentUrl = await this.webDriver.getCurrentUrl();
+      const currentUrl = await this.getCurrentUrl();
       await this.navigate(url);
       await this.webDriver.manage().deleteAllCookies();
       await this.navigate(currentUrl);
