@@ -1,7 +1,7 @@
 import 'chromedriver';
 
 import {
-    Builder, By, Capabilities, ThenableWebDriver, WebElementPromise
+    Builder, By, Capabilities, ThenableWebDriver, until, WebElementPromise
 } from 'selenium-webdriver';
 
 export class Browser {
@@ -29,6 +29,11 @@ export class Browser {
 
   public async getCurrentUrl(): Promise<string> {
     return await this.webDriver.getCurrentUrl();
+  }
+
+  public async alertAccept(): Promise<void> {
+    await this.webDriver.wait(until.alertIsPresent());
+    await this.webDriver.switchTo().alert().accept();
   }
 
   public async clearCookies(url?: string): Promise<void> {

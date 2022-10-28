@@ -18,16 +18,16 @@ import {
   textPassword,
   textUsername,
   urlLoginOk,
-} from './pages/login';
+} from './pages/loginPage';
 
 const capabilities: {} | Capabilities = {
   'browserName' : 'chrome',
   'chromeOptions' : {
-    'args' : ["--disable-plugins"]
+    'args' : ['--disable-plugins']
   }
 };
 
-describe('Lesson 1: Automation Introduction and Basic Scripting', () => {
+describe('Lesson 2: Environment Variables and Parallel Testing', () => {
   let browser: Browser;
 
   beforeEach(() => {
