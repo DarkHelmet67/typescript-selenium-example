@@ -5,8 +5,9 @@ import { afterEach, beforeEach } from 'mocha';
 import { Capabilities, WebElement } from 'selenium-webdriver';
 
 import { Browser } from './helpers/browser';
-import { gotoContactUsPage, gotoHomePage } from './pages/homePage';
+import { gotoContactUsPage, gotoHomePage, gotoProductsPage } from './pages/homePage';
 import { fillContactForm, getElementConfirmMessage } from './pages/contactPage';
+import { addToCart, viewCart, viewProduct } from './pages/productsPage';
 
 const capabilities: {} | Capabilities = {
   'browserName' : 'chrome',
@@ -15,12 +16,6 @@ const capabilities: {} | Capabilities = {
   }
 };
 
-const name: string = 'Firstname Lastname';
-const emailAddress: string = 'test@email.com';
-const subjectText: string = 'The Subject';
-const messageText: string = 'This is the content of the message text';
-const successText: string = 'Success! Your details have been submitted successfully.';
-
 describe('Lesson 3: Best Practices and Page Object Model', () => {
   let browser: Browser;
 
@@ -28,23 +23,21 @@ describe('Lesson 3: Best Practices and Page Object Model', () => {
     browser = new Browser('', capabilities);
   });
 
-  it('Contact Us Page', async () => {
+  it('Products Page', async () => {
     browser.maximize();
 
     await gotoHomePage(browser);
 
-    await gotoContactUsPage(browser);
+    await gotoProductsPage(browser);
 
-    await fillContactForm(browser, name, emailAddress, subjectText, messageText);
-    
-    const confirmMessage: WebElement = await getElementConfirmMessage(browser);
-    assert.ok(confirmMessage.isDisplayed(), 'Confirm message not found');
-    
-    const confirmText: string = await confirmMessage.getText();
-    assert.equal(confirmText, successText, 'Unexpected confirm message');
+    await viewProduct(browser);
+
+    await addToCart(browser);
+
+    await viewCart(browser);
     
     await browser.getDriver().sleep(2000); // Uncomment if you want to see actual browser screen before test finish
-  }).timeout(20000);
+  }).timeout(30000);
 
   afterEach(() => {
     browser.close();

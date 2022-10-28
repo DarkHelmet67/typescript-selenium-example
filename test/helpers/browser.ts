@@ -1,7 +1,8 @@
 import 'chromedriver';
 
 import {
-    Builder, By, Capabilities, ThenableWebDriver, until, WebElementPromise
+  Actions,
+    Builder, By, Capabilities, ThenableWebDriver, until, WebElement, WebElementPromise
 } from 'selenium-webdriver';
 
 export class Browser {
@@ -25,6 +26,11 @@ export class Browser {
 
   public findElementById(id: string): WebElementPromise {
     return this.webDriver.findElement(By.id(id));
+  }
+
+  public moveToElement(element: WebElement, x: number = 0, y: number = 0): Promise<void> {
+    const actions: Actions = this.webDriver.actions();
+    return actions.move({ origin: element, x, y }).perform();
   }
 
   public async getCurrentUrl(): Promise<string> {

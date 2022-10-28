@@ -27,4 +27,5 @@ This repo should work on both Linux and Windows machines (using `rimraf` and `np
 
 # How to run the tests
 There is a test for each lesson, e.g. `npm run test:lesson-1`
+
 To run all test simply type `npm run test:all`
