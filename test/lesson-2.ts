@@ -14,7 +14,7 @@ const emailAddress: string = 'test@email.com';
 const subjectText: string = 'The Subject';
 const messageText: string = 'This is the content of the message text';
 const successText: string = 'Success! Your details have been submitted successfully.';
-const timeout: number = 30000;
+const timeout: number = 60000;
 
 getCapabilities('browserstack-build-2', 'Lesson 2: Environment Variables and Parallel Testing').forEach((capabilities: {} | Capabilities) => {
   describe('Lesson 2: Environment Variables and Parallel Testing', () => {

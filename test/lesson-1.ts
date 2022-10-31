@@ -16,7 +16,7 @@ const textInvalidUsername: string = 'Your username is invalid!';
 const textPassword: string = 'Password123';
 const textUsername: string = 'student';
 const urlLoginOk: string = 'https://practicetestautomation.com/logged-in-successfully/';
-const timeout: number = 20000;
+const timeout: number = 60000;
 
 getCapabilities('browserstack-build-1', 'Lesson 1: Automation Introduction and Basic Scripting').forEach((capabilities: {} | Capabilities) => {
   describe('Lesson 1: Automation Introduction and Basic Scripting', () => {
