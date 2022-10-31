@@ -8,9 +8,9 @@ import { Browser } from './helpers/browser';
 import { gotoContactUsPage, gotoHomePage, gotoProductsPage } from './pages/homePage';
 import { fillContactForm, getElementConfirmMessage } from './pages/contactPage';
 import { addToCart, viewCart, viewProduct } from './pages/productsPage';
-import { getLocalCapabilities } from '../bs-config';
+import { getCapabilities } from '../bs-config';
 
-getLocalCapabilities().forEach((capabilities: {} | Capabilities) => {
+getCapabilities('browserstack-build-3', 'Lesson 3: Best Practices and Page Object Model').forEach((capabilities: {} | Capabilities) => {
   describe('Lesson 3: Best Practices and Page Object Model', () => {
   let browser: Browser;
 

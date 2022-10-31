@@ -7,7 +7,7 @@ import { Capabilities, WebElement } from 'selenium-webdriver';
 import { Browser } from './helpers/browser';
 import { gotoContactUsPage, gotoHomePage } from './pages/homePage';
 import { fillContactForm, getElementConfirmMessage } from './pages/contactPage';
-import { getBrowserStackCapabilities, bsUserName, bsPassword } from '../bs-config';
+import { getCapabilities, bsUserName, bsPassword } from '../bs-config';
 
 const name: string = 'Firstname Lastname';
 const emailAddress: string = 'test@email.com';
@@ -16,7 +16,7 @@ const messageText: string = 'This is the content of the message text';
 const successText: string = 'Success! Your details have been submitted successfully.';
 const timeout: number = 30000;
 
-getBrowserStackCapabilities('browserstack-build-2', 'Lesson 2: Environment Variables and Parallel Testing').forEach((capabilities: {} | Capabilities) => {
+getCapabilities('browserstack-build-2', 'Lesson 2: Environment Variables and Parallel Testing').forEach((capabilities: {} | Capabilities) => {
   describe('Lesson 2: Environment Variables and Parallel Testing', () => {
   let browser: Browser;
 
