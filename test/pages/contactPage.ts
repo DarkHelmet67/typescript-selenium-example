@@ -36,7 +36,7 @@ export const fillContactForm = async(browser: Browser, name: string, emailAddres
 
 export const getElementConfirmMessage = async(browser: Browser): Promise<WebElement> => {
   // AWAIT for MESSAGE to APPEAR
-  const okMessage: WebElementPromise = browser.findElement(selectorTextConfirm);
-  await browser.getDriver().wait(until.elementIsVisible(okMessage));
-  return await okMessage;
+  const okMessage: WebElement = await browser.findElement(selectorTextConfirm);
+  await browser.getDriver().wait(until.elementIsVisible(browser.findElement(selectorTextConfirm)));
+  return okMessage;
 };

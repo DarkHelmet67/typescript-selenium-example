@@ -4,17 +4,12 @@ import { assert } from 'chai';
 import { afterEach, beforeEach } from 'mocha';
 import { Capabilities, until, WebElement } from 'selenium-webdriver';
 
+import { getCapabilities } from '../bs-config';
 import { Browser } from './helpers/browser';
 import {
-  doLogin,
-  getCurrentUrl,
-  getElementErrorMessage,
-  getElementLoginConfirmation,
-  getElementSiteTitle,
-  gotoLoginPage,
-  textLoginOk,
+    doLogin, getCurrentUrl, getElementErrorMessage, getElementLoginConfirmation,
+    getElementSiteTitle, gotoLoginPage, textLoginOk
 } from './pages/loginPage';
-import { bsPassword, bsUserName, getCapabilities } from '../bs-config';
 
 const textInvalidPassword: string = 'Your password is invalid!';
 const textInvalidUsername: string = 'Your username is invalid!';
@@ -28,8 +23,8 @@ getCapabilities('browserstack-build-1', 'Lesson 1: Automation Introduction and B
     let browser: Browser;
 
     beforeEach(() => {
-      // Do NOT pass USERNAME and PASSWORD to run it LOCALLY!
-      browser = new Browser(capabilities, bsUserName, bsPassword);
+      browser = new Browser(capabilities);
+      browser.maximize();
     });
 
     afterEach(() => {
@@ -45,8 +40,6 @@ getCapabilities('browserstack-build-1', 'Lesson 1: Automation Introduction and B
       const textLogin: string = 'Test Login';
       const textLoginOk: string = 'Logged In Successfully';
       const urlLogin: string = 'https://practicetestautomation.com/practice-test-login/';
-
-      browser.maximize();
 
       browser.navigate(urlLogin);
       await browser.getDriver().wait(until.titleContains(textLogin), timeout, 'Timeout waiting for LOGIN message');
@@ -77,8 +70,6 @@ getCapabilities('browserstack-build-1', 'Lesson 1: Automation Introduction and B
     }).timeout(timeout);
 
     it('Successfully logged in (using PAGE OBJECT MODEL)', async () => {
-      browser.maximize();
-
       await gotoLoginPage(browser);
 
       await doLogin(browser, textUsername, textPassword);
@@ -99,8 +90,6 @@ getCapabilities('browserstack-build-1', 'Lesson 1: Automation Introduction and B
     }).timeout(timeout);
 
     it('Bonus Exercise - Wrong username', async () => {
-      browser.maximize();
-
       await gotoLoginPage(browser);
 
       await doLogin(browser, 'foo', textPassword);
@@ -114,8 +103,6 @@ getCapabilities('browserstack-build-1', 'Lesson 1: Automation Introduction and B
     }).timeout(timeout);
 
     it('Bonus Exercise - Wrong Password', async () => {
-      browser.maximize();
-
       await gotoLoginPage(browser);
 
       await doLogin(browser, textUsername, 'foo');

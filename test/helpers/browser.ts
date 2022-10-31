@@ -4,15 +4,16 @@ import {
   Actions,
     Builder, By, Capabilities, ThenableWebDriver, until, WebElement, WebElementPromise
 } from 'selenium-webdriver';
+import { bsPassword, bsUserName, isLocalTesting } from '../../bs-config';
 
 export class Browser {
   private webDriver: ThenableWebDriver;
   private bsUrl: string = 'hub-cloud.browserstack.com/wd/hub';
 
-  public constructor(capabilities: Capabilities | {}, username?: string, password?: string) {
+  public constructor(capabilities: Capabilities | {}) {
     const builder: Builder = new Builder().withCapabilities(capabilities);
     
-    this.webDriver = username && password ? builder.usingServer(`http://${username}:${password}@${this.bsUrl}`).build() : builder.build();
+    this.webDriver = isLocalTesting ? builder.build() : builder.usingServer(`http://${bsUserName}:${bsPassword}@${this.bsUrl}`).build();
     // this.webDriver = new Builder().forBrowser(browserName).setChromeOptions(new Options().addArguments('--headless', '--disable-plugins')).build();
   }
 
