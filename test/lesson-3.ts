@@ -8,19 +8,19 @@ import { Browser } from './helpers/browser';
 import { gotoContactUsPage, gotoHomePage, gotoProductsPage } from './pages/homePage';
 import { fillContactForm, getElementConfirmMessage } from './pages/contactPage';
 import { addToCart, viewCart, viewProduct } from './pages/productsPage';
+import { getLocalCapabilities } from '../bs-config';
 
-const capabilities: {} | Capabilities = {
-  'browserName' : 'chrome',
-  'chromeOptions' : {
-    'args' : ['--disable-plugins']
-  }
-};
-
-describe('Lesson 3: Best Practices and Page Object Model', () => {
+getLocalCapabilities().forEach((capabilities: {} | Capabilities) => {
+  describe('Lesson 3: Best Practices and Page Object Model', () => {
   let browser: Browser;
 
   beforeEach(() => {
-    browser = new Browser('', capabilities);
+    // Do NOT pass USERNAME and PASSWORD to run it LOCALLY!
+    browser = new Browser(capabilities);
+  });
+
+  afterEach(() => {
+    browser.close();
   });
 
   it('Products Page', async () => {
@@ -38,8 +38,5 @@ describe('Lesson 3: Best Practices and Page Object Model', () => {
     
     await browser.getDriver().sleep(2000); // Uncomment if you want to see actual browser screen before test finish
   }).timeout(30000);
-
-  afterEach(() => {
-    browser.close();
-  });
+});
 });

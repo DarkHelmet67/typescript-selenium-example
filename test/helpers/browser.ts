@@ -7,9 +7,13 @@ import {
 
 export class Browser {
   private webDriver: ThenableWebDriver;
+  private bsUrl: string = 'hub-cloud.browserstack.com/wd/hub';
 
-  public constructor(browserName: string, capabilities: {} | Capabilities) {
-    this.webDriver = browserName.length > 0 ? new Builder().forBrowser(browserName).build() : new Builder().withCapabilities(capabilities).build();
+  public constructor(capabilities: Capabilities | {}, username?: string, password?: string) {
+    const builder: Builder = new Builder().withCapabilities(capabilities);
+    
+    this.webDriver = username && password ? builder.usingServer(`http://${username}:${password}@${this.bsUrl}`).build() : builder.build();
+    // this.webDriver = new Builder().forBrowser(browserName).setChromeOptions(new Options().addArguments('--headless', '--disable-plugins')).build();
   }
 
   public async maximize(): Promise<void> {
